@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UACompatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Visual Representations</title>
+        <link rel="stylesheet" href="main.css">
+    </head>
+    <body>
+        <h1>Visual Representations</h1>
+        <a href="index.html">back</a>
+        <h2>Representation 1</h2>
+        <img src="https://i.imgur.com/8cextBf.png" 
+        width = "700"
+        height = "600">
+        <p>This is a representation of height (cm) versus blood pressure of patients tested. To see the correlation between the two factors.</p>
+        <h3>Program:</h3>
+        <p style="font-family:'Courier New'">VR = readmatrix("VR_1.xlsx");</p>
+        <p style="font-family:'Courier New'">Height = VR(:,2:3:end);</p>
+        <p style="font-family:'Courier New'">Blood_Pressure = VR(:,3:3:end);</p>
+        <p style="font-family:'Courier New'">plot (Height,Blood_Pressure,'x')</p>
+
+        <h2>Representation 2</h2>
+        <img src="https://imgur.com/a/jtHL7RG" 
+        width = "700" height = "600">
+        <p>This represents the average height of males versus females in cm.</p>
+        <h3>Program:</h3>
+        <p style="font-family:'Courier New'">VR = readmatrix("VR_1.xlsx");
+            MC = 1;
+            WC = 1;
+            Gender = VR(:,1:3:end);
+            for index = 1:length(Gender)
+               if Gender(index) == 1
+                   Man(MC) = VR(MC,2);
+                   MC = MC + 1;
+               else
+                   Woman(WC) = VR(WC,2);
+                   WC = WC + 1;
+               end
+            end
+            Mavg = sum(Man)/length(Man);
+            Wavg = sum(Woman)/length(Woman);
+            graph = [Mavg,Wavg];
+            Gender = {'Man'; 'Woman'};
+            bar(graph)
+            set(gca,'xticklabel', Gender)
+            ylim ([0 180])
+            </p>
+
+        <h2>Representation 3</h2>
+        <img src="https://imgur.com/AXXvUl2" width = "700" height = "600">
+        <p>This is showing the average blood pressure of men versus women, this helps to correlate weather height and blood pressure have a trend.
+        </p>
+        <h3>Program:</h3>
+        <p style="font-family: 'Courier New'">VR = readmatrix("VR_1.xlsx");
+            MC = 1;
+            WC = 1;
+            Gender = VR(:,1:3:end);
+            for index = 1:length(Gender)
+               if Gender(index) == 1
+                   Man(MC) = VR(MC,3);
+                   MC = MC + 1;
+               else
+                   Woman(WC) = VR(WC,3);
+                   WC = WC + 1;
+               end
+            end
+            Mavg = sum(Man)/length(Man);
+            Wavg = sum(Woman)/length(Woman);
+            graph = [Mavg,Wavg];
+            Gender = {'Man'; 'Woman'};
+            bar(graph)
+            set(gca,'xticklabel', Gender)
+            ylim([0 80])
+            ylabel ('Blood Pressure (mmHg)')
+            title('Average blood pressure of Men vs Women')
+            </p>
+    </body>
+</html>
